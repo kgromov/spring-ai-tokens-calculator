@@ -1,0 +1,68 @@
+#  https://openai.com/api/pricing/
+# fine-tuning and realtime are out of scope so far
+text:
+  models:
+    gpt-4o:
+      input: 2.5
+      output: 10.0
+    gpt-4o-mini:
+      input: 0.15
+      output: 0.6
+    gpt-4o-2024-05-13:
+      input: 5.0
+      output: 15.0
+    gpt-4-turbo:
+      input: 10.0
+      output: 30.0
+    o1:
+      input: 15.0
+      output: 60.0
+    01-mini:
+      input: 3.0
+      output: 12.0
+    llama:
+      input: 0.0
+      output: 0.0
+
+embedding:
+  models:
+    text-embedding-3-small:
+      price: 0.020
+    text-embedding-3-large:
+      price: 0.130
+    ada-v2:
+      price: 0.1
+
+image:
+  models:
+    dall-e-3:
+      standard: 0.04 # 0.04 - 0.08
+      hd: 0.12       # 0.08 - 0.12
+    dall-e-2:
+      standard: 0.02
+
+audio:
+  models:
+    gpt-4o-audio-preview:
+      input: 100.0
+      output: 200.0
+    gpt-4o-audio-preview-2024-12-17:
+      input: 40.0
+      output: 80.0
+    gpt-4o-mini-audio-preview:
+      input: 10.0
+      output: 20.0
+    tts:
+      price: 15.0
+    tts-hd:
+      price: 30.0
+
+#reasoning:
+#  models:
+#    o1:
+#      input: 15.0
+#      output: 60.0
+#    01-mini:
+#      input: 3.0
+#      output: 12.0
+
