@@ -2,6 +2,7 @@
 # fine-tuning and realtime are out of scope so far
 text:
   models:
+    # openAI
     gpt-4o:
       input: 2.5
       output: 10.0
@@ -20,6 +21,21 @@ text:
     01-mini:
       input: 3.0
       output: 12.0
+    # anthropic
+    claude-3-5-sonnet:
+      input: 3.0
+      output: 15.0
+    claude-3-opus:
+      input: 15.0
+      output: 75.0
+    claude-3-haiku:
+      input: 0.8
+      output: 4.0
+    # gemini
+#    GEMINI_PRO("gemini-pro"),
+#    GEMINI_PRO_1_5_PRO("gemini-1.5-pro-preview-0514"),
+#    GEMINI_PRO_1_5_FLASH("gemini-1.5-flash-preview-0514");
+    # ollama
     llama:
       input: 0.0
       output: 0.0
@@ -35,11 +51,17 @@ embedding:
 
 image:
   models:
+    # openAI
     dall-e-3:
       standard: 0.04 # 0.04 - 0.08
       hd: 0.12       # 0.08 - 0.12
     dall-e-2:
       standard: 0.02
+    # gemini
+    gemini-pro-vision:
+      standard: 0.04
+      hd: 0.12
+    # ollama
 
 audio:
   models:
