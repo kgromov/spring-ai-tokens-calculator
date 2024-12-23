@@ -1,8 +1,7 @@
-#  https://openai.com/api/pricing/
 # fine-tuning and realtime are out of scope so far
 text:
   models:
-    # openAI
+    # openAI - https://openai.com/api/pricing/
     gpt-4o:
       input: 2.5
       output: 10.0
