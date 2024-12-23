@@ -1,4 +1,0 @@
-package org.kgromov;
-
-public @interface EnableModelsPriceConfig {
-}
