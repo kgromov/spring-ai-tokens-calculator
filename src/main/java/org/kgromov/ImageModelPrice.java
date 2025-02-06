@@ -1,4 +1,4 @@
 package org.kgromov;
 
-record ImageModelPrice(Double standard, Double hd) {
+public record ImageModelPrice(Double standard, Double hd) {
 }
