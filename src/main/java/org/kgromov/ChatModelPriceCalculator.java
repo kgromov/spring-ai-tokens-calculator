@@ -6,10 +6,10 @@ import org.springframework.ai.chat.model.ChatResponse;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public final class TextModelPriceCalculator implements PriceCalculator {
+public final class ChatModelPriceCalculator implements PriceCalculator<ChatResponse> {
     private final TextModelProperties properties;
 
-    TextModelPriceCalculator(TextModelProperties properties) {
+    ChatModelPriceCalculator(TextModelProperties properties) {
         this.properties = properties;
     }
 

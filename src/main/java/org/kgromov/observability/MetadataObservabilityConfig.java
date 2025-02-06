@@ -1,11 +1,9 @@
 package org.kgromov.observability;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import org.kgromov.TextModelPriceCalculator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.kgromov.ChatModelPriceCalculator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 //@ConditionalOnEnabledMetricsExport()
 //@ConditionalOnProperty(value = "spring.ai.metrics.enabled", havingValue = "true")
@@ -18,7 +16,7 @@ public class MetadataObservabilityConfig {
     }
 
     @Bean
-    MetadataAdvisor metadataAdvisor(SpringAiMetricsService metricsService, TextModelPriceCalculator priceCalculator) {
+    MetadataAdvisor metadataAdvisor(SpringAiMetricsService metricsService, ChatModelPriceCalculator priceCalculator) {
         return new MetadataAdvisor(metricsService, priceCalculator);
     }
 }

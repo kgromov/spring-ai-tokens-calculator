@@ -1,9 +1,11 @@
 package org.kgromov;
 
-import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.model.ModelResponse;
 
-public sealed interface PriceCalculator permits AudioPriceCalculator, EmbeddingsPriceCalculator, ImagePriceCalculator, TextModelPriceCalculator {
-
-    // TODO: change to ModelResponse or generify ModelResponse as interface generic type
-    double calculate(ChatResponse response);
+public sealed interface PriceCalculator<T extends ModelResponse<?>> permits
+        ChatModelPriceCalculator,
+        EmbeddingsPriceCalculator,
+        ImagePriceCalculator,
+        AudioPriceCalculator {
+    double calculate(T response);
 }

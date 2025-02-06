@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class ModelsPriceConfig {
 
     @Bean
-    TextModelPriceCalculator priceCalculator(TextModelProperties properties) {
-        return new TextModelPriceCalculator(properties);
+    ChatModelPriceCalculator priceCalculator(TextModelProperties properties) {
+        return new ChatModelPriceCalculator(properties);
     }
 
     @Bean

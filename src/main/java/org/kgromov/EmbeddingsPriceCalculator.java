@@ -1,12 +1,12 @@
 package org.kgromov;
 
 import org.springframework.ai.chat.metadata.Usage;
-import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.embedding.EmbeddingResponse;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public final class EmbeddingsPriceCalculator implements PriceCalculator {
+public final class EmbeddingsPriceCalculator implements PriceCalculator<EmbeddingResponse> {
     private final EmbeddingsModelProperties properties;
 
     EmbeddingsPriceCalculator(EmbeddingsModelProperties properties) {
@@ -14,7 +14,7 @@ public final class EmbeddingsPriceCalculator implements PriceCalculator {
     }
 
     @Override
-    public double calculate(ChatResponse response) {
+    public double calculate(EmbeddingResponse response) {
         Usage tokensUsage = response.getMetadata().getUsage();
         String model = response.getMetadata().getModel();
         return properties.getModelPrice(model)

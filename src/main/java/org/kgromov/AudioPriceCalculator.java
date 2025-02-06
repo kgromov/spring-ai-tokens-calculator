@@ -1,14 +1,8 @@
 package org.kgromov;
 
-import org.springframework.ai.chat.metadata.Usage;
-import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.audio.transcription.AudioTranscriptionResponse;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
-import static java.util.Optional.ofNullable;
-
-public final class AudioPriceCalculator implements PriceCalculator {
+public final class AudioPriceCalculator implements PriceCalculator<AudioTranscriptionResponse> {
     private final AudioModelProperties properties;
 
     AudioPriceCalculator(AudioModelProperties properties) {
@@ -16,24 +10,11 @@ public final class AudioPriceCalculator implements PriceCalculator {
     }
 
     @Override
-    public double calculate(ChatResponse response) {
-        Usage tokensUsage = response.getMetadata().getUsage();
-        String model = response.getMetadata().getModel();
-        return properties.getModelPrice(model)
-                .map(price -> this.calculate(price, new TokenUsage(
-                        tokensUsage.getPromptTokens(),
-                        tokensUsage.getGenerationTokens())
-                ))
-                .orElse(Double.NaN);
+    public double calculate(AudioTranscriptionResponse response) {
+        throw new UnsupportedOperationException("Required to examine audio metadata");
     }
 
     private double calculate(AudioModelPrice modelPrice, TokenUsage usage) {
-        return ofNullable(modelPrice.price())
-                .map(price -> BigDecimal.valueOf(usage.total()).multiply(BigDecimal.valueOf(price)))
-                .orElseGet(() -> BigDecimal.valueOf(usage.prompt()).multiply(BigDecimal.valueOf(modelPrice.input()))
-                        .add(BigDecimal.valueOf(usage.generated()).multiply(BigDecimal.valueOf(modelPrice.output())))
-                )
-                .divide(BigDecimal.valueOf(1_000_000), 2, RoundingMode.HALF_UP)
-                .doubleValue();
+        throw new UnsupportedOperationException("Required to examine audio metadata");
     }
 }

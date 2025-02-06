@@ -1,7 +1,6 @@
 package org.kgromov.observability;
 
 import org.kgromov.PriceCalculator;
-import org.kgromov.TextModelPriceCalculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.advisor.api.AdvisedRequest;
