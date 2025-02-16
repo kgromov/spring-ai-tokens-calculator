@@ -26,7 +26,7 @@ class SpringAiMetricsService {
                 .register(registry);
         tokensPrice = Counter.builder("spring.ai.tokens_price")
                 .description("Number of request tokens used")
-                .tag("spring.ai", "request_tokens")
+                .tag("spring.ai", "tokens_price")
                 .register(registry);
     }
 

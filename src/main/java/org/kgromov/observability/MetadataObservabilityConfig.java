@@ -18,14 +18,13 @@ public class MetadataObservabilityConfig {
         return new SpringAiMetricsService(registry);
     }
 
-    // FIXME: chat model actually
     @Bean
-    MetadataAdvisor metadataAdvisor(SpringAiMetricsService metricsService, ChatModelPriceCalculator priceCalculator) {
-        return new MetadataAdvisor(metricsService, priceCalculator);
+    ChatMetadataAdvisor metadataAdvisor(SpringAiMetricsService metricsService, ChatModelPriceCalculator priceCalculator) {
+        return new ChatMetadataAdvisor(metricsService, priceCalculator);
     }
 
     @Bean
-    ImageCallAdvisor imageCallAdvisor(SpringAiMetricsService metricsService, ImageModelProperties properties,) {
+    ImageCallAdvisor imageCallAdvisor(SpringAiMetricsService metricsService, ImageModelProperties properties) {
         return new ImageCallAdvisor(metricsService, properties);
     }
 }

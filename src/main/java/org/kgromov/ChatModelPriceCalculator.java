@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public final class ChatModelPriceCalculator implements PriceCalculator<ChatResponse> {
-    private final TextModelProperties properties;
+    private final ChatModelProperties properties;
 
-    ChatModelPriceCalculator(TextModelProperties properties) {
+    ChatModelPriceCalculator(ChatModelProperties properties) {
         this.properties = properties;
     }
 

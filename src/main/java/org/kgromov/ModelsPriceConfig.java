@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @AutoConfiguration
 @EnableConfigurationProperties({
-        TextModelProperties.class,
+        ChatModelProperties.class,
         EmbeddingsModelProperties.class,
         ImageModelProperties.class,
         AudioModelProperties.class
@@ -16,18 +16,13 @@ import org.springframework.context.annotation.Configuration;
 public class ModelsPriceConfig {
 
     @Bean
-    ChatModelPriceCalculator priceCalculator(TextModelProperties properties) {
+    ChatModelPriceCalculator priceCalculator(ChatModelProperties properties) {
         return new ChatModelPriceCalculator(properties);
     }
 
     @Bean
     EmbeddingsPriceCalculator embeddingsPriceCalculator(EmbeddingsModelProperties properties) {
         return new EmbeddingsPriceCalculator(properties);
-    }
-
-    @Bean
-    ImagePriceCalculator imagePriceCalculator(ImageModelProperties properties) {
-        return new ImagePriceCalculator(properties);
     }
 
     @Bean

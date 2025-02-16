@@ -12,7 +12,6 @@ import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.Instant;
 
 @Aspect
@@ -38,18 +37,35 @@ public class ImageCallAdvisor {
         try {
             ImageResponse response = (ImageResponse) joinPoint.proceed();
             metricsService.recordResponseTime(now);
-            properties.getModelPrice(imagePrompt.getOptions().getModel())
+            var options = imagePrompt.getOptions();
+            properties.getModelPrice(options.getModel())
                     .ifPresent(modelPrice -> {
-                        double price = BigDecimal.valueOf(modelPrice.standard())
+                        var resolution = new Resolution(options.getWidth(), options.getHeight());
+                        double price = BigDecimal.valueOf(resolution.isHigh() ? modelPrice.hd() : modelPrice.standard())
                                 .multiply(BigDecimal.valueOf(response.getResults().size()))
-                                .divide(BigDecimal.valueOf(1_000_000), 2, RoundingMode.HALF_UP)
                                 .doubleValue();
+                        logger.debug("Response cost = {} $", price);
                         metricsService.incrementTokensPrice(price);
                     });
             return response;
         } catch (Exception e) {
             logger.error("Cannot get image response", e);
             throw e;
+        }
+    }
+
+    record Resolution(int width, int height) {
+
+        boolean isStandard() {
+            return (width >= 512 && height >= 512) && (width <= 1024 && height <= 1024);
+        }
+
+        boolean isHigh() {
+            return width > 1024 && height > 1024;
+        }
+
+        boolean isLow() {
+            return width < 512 && height < 512;
         }
     }
 }

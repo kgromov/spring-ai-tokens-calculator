@@ -1,6 +1,6 @@
 package org.kgromov.observability;
 
-import org.kgromov.PriceCalculator;
+import org.kgromov.ChatModelPriceCalculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.advisor.api.AdvisedRequest;
@@ -16,15 +16,15 @@ import java.util.concurrent.atomic.DoubleAdder;
 import static org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor.DEFAULT_REQUEST_TO_STRING;
 import static org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor.DEFAULT_RESPONSE_TO_STRING;
 
-public class MetadataAdvisor implements CallAroundAdvisor {
-    private static final Logger logger = LoggerFactory.getLogger(MetadataAdvisor.class);
+public class ChatMetadataAdvisor implements CallAroundAdvisor {
+    private static final Logger logger = LoggerFactory.getLogger(ChatMetadataAdvisor.class);
 
     private final SpringAiMetricsService metricsService;
-    private final PriceCalculator priceCalculator;
+    private final ChatModelPriceCalculator priceCalculator;
 
     private final Map<String, DoubleAdder> tokensPrice = new ConcurrentHashMap<>();
 
-    MetadataAdvisor(SpringAiMetricsService metricsService, PriceCalculator priceCalculator) {
+    ChatMetadataAdvisor(SpringAiMetricsService metricsService, ChatModelPriceCalculator priceCalculator) {
         this.metricsService = metricsService;
         this.priceCalculator = priceCalculator;
     }
